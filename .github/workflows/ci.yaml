@@ -26,20 +26,6 @@ jobs:
       - name: "Fetch latest tag test"
         id: get-latest-tag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
-      - name: Build and push Postgres 16
-        id: docker_build_16
-        uses: docker/build-push-action@v3
-        with:
-          build-args: |
-            PG_VERSION=16.3
-            PG_MAJOR_VERSION=16
-            VERSION=${{ steps.get-latest-tag.outputs.tag }}
-          context: .
-          file: ./pg16/Dockerfile
-          push: true
-          tags: |
-            flyio/postgres-flex:16
-            flyio/postgres-flex:16.3
       - name: Build and push Postgres 16 Timescale DB
         id: docker_build_16_timescaledb
         uses: docker/build-push-action@v3
@@ -52,8 +38,8 @@ jobs:
           file: ./pg16/Dockerfile-timescaledb
           push: true
           tags: |
-            flyio/postgres-flex-timescaledb:16
-            flyio/postgres-flex-timescaledb:16.3
+            unixmask/postgres-timescale-pg_search:16
+            unixmask/postgres-timescale-pg_search:16.3
       - name: Postgres 16 Image digest
         run: echo ${{ steps.docker_build_16.outputs.digest }}
       - name: Postgres 16 TimescaleDB Image digest
