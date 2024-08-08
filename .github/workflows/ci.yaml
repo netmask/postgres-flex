@@ -38,8 +38,8 @@ jobs:
           file: ./pg16/Dockerfile-timescaledb
           push: true
           tags: |
-            unixmask/postgres-timescale-pg_search:16
-            unixmask/postgres-timescale-pg_search:16.3
+            unixmask/postgres-timescale-pg_search-fly:16
+            unixmask/postgres-timescale-pg_search-fly:16.3
       - name: Postgres 16 Image digest
         run: echo ${{ steps.docker_build_16.outputs.digest }}
       - name: Postgres 16 TimescaleDB Image digest
